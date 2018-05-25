@@ -1,0 +1,693 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Saira Condensed', sans-serif;
+    font-size: 10px;
+}
+
+body {
+    overflow: hidden;
+}
+
+.menu {
+    background-color: #6CB1DC;
+    color: white;
+    height: 100vh;
+    width: 100vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: absolute;
+    z-index: 3;
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    -webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+}
+
+.menu ul {
+    width: 50vw;
+    list-style-type: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.menu li {
+    width: 100%;
+    height: 10vh;
+    background-color: white;
+    color: #6CB1DC;
+    border-radius: 10px;
+    border: 3px solid white;
+    -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.20);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.20);
+    margin-top: 10vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 3.5rem;
+    overflow: hidden;
+}
+
+.menu li:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.menu.show {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+}
+
+.g-recaptcha {
+    display: none;
+}
+
+#h2MainMenu {
+    width: 100vw;
+    height: 10vh;
+    line-height: 10vh;
+    text-align: center;
+    position: absolute;
+    z-index: 4;
+    top: 10vh;
+    -webkit-transform: translateY(25%);
+    transform: translateY(25%);
+    background-color: #547D99;
+    font-size: 3.5rem;
+    display: none;
+}
+
+#h2Menu,
+#textInputMenu {
+    width: 100%;
+    height: 10vh;
+    margin-bottom: 10vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 3.5rem;
+}
+
+header {
+    background-color: #6CB1DC;
+    color: white;
+    height: 15vh;
+    width: 100vw;
+    line-height: 15vh;
+    position: relative;
+}
+
+main {
+    background-color: #547D99;
+    color: white;
+    height: 80vh;
+    width: 100vw;
+    position: relative;
+}
+
+footer {
+    background-color: #6CB1DC;
+    color: white;
+    height: 5vh;
+    width: 100vw;
+    line-height: 5vh;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    position: absolute;
+    left: 3%;
+}
+
+footer h3 {
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+.navIcon {
+    width: 42px;
+    height: 42px;
+    top: 50%;
+    right: 7%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    position: absolute;
+    z-index: 4;
+}
+
+.navIcon span {
+    display: block;
+    width: 100%;
+    height: 10%;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    background: white;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.20);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.20);
+}
+
+.navIcon span:nth-child(1) {
+    -webkit-transform: translateY(-350%);
+    transform: translateY(-350%);
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+}
+
+.navIcon span:nth-child(4) {
+    -webkit-transform: translateY(250%);
+    transform: translateY(250%);
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+}
+
+.navIcon.active span:nth-child(1) {
+    -webkit-transform: translateY(-650%);
+    transform: translateY(-650%);
+    opacity: 0;
+}
+
+.navIcon.active span:nth-child(4) {
+    -webkit-transform: translateY(550%);
+    transform: translateY(550%);
+    opacity: 0;
+}
+
+.navIcon.active span:nth-child(2) {
+    -webkit-transform: translateY(-50%) rotate(45deg);
+    transform: translateY(-50%) rotate(45deg);
+    -webkit-transition-delay: 0.2s;
+    transition-delay: 0.2s;
+}
+
+.navIcon.active span:nth-child(3) {
+    -webkit-transform: translateY(-50%) rotate(-45deg);
+    transform: translateY(-50%) rotate(-45deg);
+    -webkit-transition-delay: 0.2s;
+    transition-delay: 0.2s;
+}
+
+.navIcon:hover {
+    cursor: pointer;
+}
+
+#home {
+    width: 42px;
+    height: 42px;
+    background-color: white;
+    color: #6CB1DC;
+    border: 3px solid white;
+    position: absolute;
+    top: 7.5vh;
+    left: 7%;
+    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.20);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.20);
+    -webkit-transform: translateX(50%);
+    transform: translateX(50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 4;
+}
+
+#home a {
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #6CB1DC;
+    font-size: 3rem;
+}
+
+#home a:hover {
+    background-color: black;
+    color: white;
+}
+
+#hide {
+    width: 42px;
+    height: 42px;
+    background-color: white;
+    color: #6CB1DC;
+    border: 3px solid white;
+    position: absolute;
+    z-index: 2;
+    top: 7.5vh;
+    right: 7%;
+    text-shadow: 0 14px 0 #6CB1DC, 0 28px 0 #6CB1DC;
+    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.20);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.20);
+    -webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    border-radius: 50%;
+    line-height: 42px;
+    font-size: 3rem;
+    text-align: center;
+    overflow: hidden;
+    display: none;
+}
+
+#hide:hover {
+    background-color: black;
+    color: white;
+    text-shadow: 0 14px 0 white, 0 28px 0 white;
+    cursor: pointer;
+}
+
+#add {
+    width: 58px;
+    height: 58px;
+    background-color: white;
+    color: #547D99;
+    border: 3px solid white;
+    position: absolute;
+    z-index: 2;
+    bottom: 7%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    border-radius: 50%;
+    line-height: 58px;
+    font-size: 3.5rem;
+    text-align: center;
+    overflow: hidden;
+}
+
+#add:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.fa-angle-down {
+    -webkit-animation: arrowDown 1.6s infinite linear;
+    animation: arrowDown 1.6s infinite linear;
+}
+
+.fa-angle-up {
+    -webkit-animation: arrowUp 1.6s infinite linear;
+    animation: arrowUp 1.6s infinite linear;
+}
+
+/*MEDIA QUERIES*/
+
+@media (orientation: landscape) {
+    .menu ul {
+        width: 25vw;
+    }
+    .menu li,
+    #h2MainMenu,
+    #h2Menu,
+    #textInputMenu {
+        font-size: 3rem;
+    }
+    footer h3 {
+        font-size: 1.1rem;
+    }
+    .navIcon {
+        width: 36px;
+        height: 36px;
+    }
+    #home {
+        width: 36px;
+        height: 36px;
+    }
+    #home a {
+        font-size: 2.7rem;
+    }
+    #hide {
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
+        font-size: 2.7rem;
+    }
+    #add {
+        width: 46px;
+        height: 46px;
+        line-height: 46px;
+        font-size: 3rem;
+    }
+}
+
+@media (min-width: 530px) {
+    .menu li,
+    #h2MainMenu,
+    #h2Menu,
+    #textInputMenu {
+        font-size: 4.2rem;
+    }
+    header h1 {
+        font-size: 4.5rem;
+    }
+    footer h3 {
+        font-size: 2rem;
+    }
+    .navIcon {
+        width: 54px;
+        height: 54px;
+    }
+    #home {
+        width: 54px;
+        height: 54px;
+    }
+    #home a {
+        font-size: 4rem;
+    }
+    #hide {
+        width: 54px;
+        height: 54px;
+        line-height: 54px;
+        font-size: 4rem;
+    }
+    #add {
+        width: 64px;
+        height: 64px;
+        line-height: 64px;
+        font-size: 4.2rem;
+    }
+}
+
+@media (min-width: 530px) and (orientation: landscape) {
+    .menu li,
+    #h2MainMenu,
+    #h2Menu,
+    #textInputMenu {
+        font-size: 2.1rem;
+    }
+    header h1 {
+        font-size: 3.5rem;
+    }
+    footer h3 {
+        font-size: 1.1rem;
+    }
+    .navIcon {
+        width: 40px;
+        height: 40px;
+    }
+    #home {
+        width: 40px;
+        height: 40px;
+    }
+    #home a {
+        font-size: 3rem;
+    }
+    #hide {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 3rem;
+    }
+    #add {
+        width: 52px;
+        height: 52px;
+        line-height: 52px;
+        font-size: 3.2rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .menu ul {
+        width: 25vw;
+    }
+    .menu li,
+    #h2MainMenu,
+    #h2Menu,
+    #textInputMenu {
+        font-size: 4.8rem;
+    }
+    header h1 {
+        font-size: 5rem;
+    }
+    footer h3 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (min-width: 768px) and (orientation: landscape) {
+    .menu li,
+    #h2MainMenu,
+    #h2Menu,
+    #textInputMenu {
+        font-size: 2.7rem;
+    }
+    header h1 {
+        font-size: 4rem;
+    }
+    footer h3 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (min-width: 768px) and (orientation: portrait) {
+    .menu ul {
+        width: 37.5vw;
+    }
+    .menu li,
+    #h2MainMenu,
+    #h2Menu,
+    #textInputMenu {
+        font-size: 5.5rem;
+    }
+    header h1 {
+        font-size: 6rem;
+    }
+    footer h3 {
+        font-size: 3rem;
+    }
+    .navIcon {
+        width: 68px;
+        height: 68px;
+    }
+    #home {
+        width: 68px;
+        height: 68px;
+    }
+    #home a {
+        font-size: 4.6rem;
+    }
+    #hide {
+        width: 68px;
+        height: 68px;
+        line-height: 68px;
+        font-size: 4.6rem;
+    }
+    #add {
+        width: 80px;
+        height: 80px;
+        line-height: 80px;
+        font-size: 5.2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .menu li,
+    #h2MainMenu,
+    #h2Menu,
+    #textInputMenu {
+        font-size: 4.6rem;
+    }
+    header h1 {
+        font-size: 7rem;
+    }
+    footer h3 {
+        font-size: 2.2rem;
+    }
+    .navIcon {
+        width: 74px;
+        height: 74px;
+    }
+    #home {
+        width: 74px;
+        height: 74px;
+    }
+    #home a {
+        font-size: 4.8rem;
+    }
+    #hide {
+        width: 74px;
+        height: 74px;
+        line-height: 74px;
+        font-size: 4.8rem;
+    }
+    #add {
+        width: 80px;
+        height: 80px;
+        line-height: 80px;
+        font-size: 5.2rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .menu li,
+    #h2MainMenu,
+    #h2Menu,
+    #textInputMenu {
+        font-size: 4.8rem;
+    }
+    header h1 {
+        font-size: 7.2rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    .menu li,
+    #h2MainMenu,
+    #h2Menu,
+    #textInputMenu {
+        font-size: 5rem;
+    }
+    header h1 {
+        font-size: 7.5rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .menu li,
+    #h2MainMenu,
+    #h2Menu,
+    #textInputMenu {
+        font-size: 2.6rem;
+    }
+    header h1 {
+        font-size: 2.8rem;
+    }
+    footer h3 {
+        font-size: 1.3rem;
+    }
+    .navIcon {
+        width: 36px;
+        height: 36px;
+    }
+    #home {
+        width: 36px;
+        height: 36px;
+    }
+    #home a {
+        font-size: 2.7rem;
+    }
+    #hide {
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
+        font-size: 2.7rem;
+    }
+    #add {
+        width: 44px;
+        height: 44px;
+        line-height: 44px;
+        font-size: 2.9rem;
+    }
+}
+
+/*ANIMACJE CSS*/
+
+@-webkit-keyframes arrowDown {
+    0% {
+        -webkit-transform: translateY(-70px);
+        transform: translateY(-70px);
+    }
+    50% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+    }
+    100% {
+        -webkit-transform: translateY(70px);
+        transform: translateY(70px);
+    }
+}
+
+@keyframes arrowDown {
+    0% {
+        -webkit-transform: translateY(-70px);
+        transform: translateY(-70px);
+    }
+    50% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+    }
+    100% {
+        -webkit-transform: translateY(70px);
+        transform: translateY(70px);
+    }
+}
+
+@-webkit-keyframes arrowUp {
+    0% {
+        -webkit-transform: translateY(70px);
+        transform: translateY(70px);
+    }
+    50% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+    }
+    100% {
+        -webkit-transform: translateY(-70px);
+        transform: translateY(-70px);
+    }
+}
+
+@keyframes arrowUp {
+    0% {
+        -webkit-transform: translateY(70px);
+        transform: translateY(70px);
+    }
+    50% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+    }
+    100% {
+        -webkit-transform: translateY(-70px);
+        transform: translateY(-70px);
+    }
+}
