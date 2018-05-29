@@ -455,14 +455,46 @@ const activateButton = function (event) {
 
     if (this.className == 'check') {
 
-        if (tasks[tasksIndexList[index]].done == "true") tasks[tasksIndexList[index]].done = "false"
-        else tasks[tasksIndexList[index]].done = "true";
+        if (userId == 0) {
 
-        if (typeof (Storage) !== "undefined") {
+            if (tasks[tasksIndexList[index]].done == "true") tasks[tasksIndexList[index]].done = "false"
+            else tasks[tasksIndexList[index]].done = "true";
 
-            localStorage.setItem('tasks', JSON.stringify(tasks));
+            if (typeof (Storage) !== "undefined") {
+
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+            };
+
+        } else {
+
+            $.ajax({
+
+                async: false,
+                type: "POST",
+                url: "transfer.php",
+                data: {
+                    username: username,
+                    password: password,
+                    type: "tasks",
+                    action: "update",
+                    id: tasks[tasksIndexList[index]].id,
+                    listId: "",
+                    content: ""
+                },
+                dataType: 'json',
+
+                success: function (json) {
+
+                    tasks = json;
+
+                },
+
+                error: function (error) {
+
+                    alert("An error occurred! Please reload this page later or Sign out and use offline.");
+                }
+            });
         };
-
     };
 
     refreshView();
@@ -500,18 +532,49 @@ const activateTextLine = function (event) {
             left[i] = 'check';
             right[i] = 'remove';
         };
-    };
 
-    if (left[index] == 'check') {
+    } else {
 
-        if (tasks[tasksIndexList[index]].done == "true") tasks[tasksIndexList[index]].done = "false"
-        else tasks[tasksIndexList[index]].done = "true";
+        if (userId == 0) {
 
-        if (typeof (Storage) !== "undefined") {
+            if (tasks[tasksIndexList[index]].done == "true") tasks[tasksIndexList[index]].done = "false"
+            else tasks[tasksIndexList[index]].done = "true";
 
-            localStorage.setItem('tasks', JSON.stringify(tasks));
+            if (typeof (Storage) !== "undefined") {
+
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+            };
+
+        } else {
+
+            $.ajax({
+
+                async: false,
+                type: "POST",
+                url: "transfer.php",
+                data: {
+                    username: username,
+                    password: password,
+                    type: "tasks",
+                    action: "update",
+                    id: tasks[tasksIndexList[index]].id,
+                    listId: "",
+                    content: ""
+                },
+                dataType: 'json',
+
+                success: function (json) {
+
+                    tasks = json;
+
+                },
+
+                error: function (error) {
+
+                    alert("An error occurred! Please reload this page later or Sign out and use offline.");
+                }
+            });
         };
-
     };
 
     refreshView();

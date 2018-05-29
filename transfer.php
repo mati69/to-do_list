@@ -343,6 +343,57 @@ if ($connect->connect_errno == 0){
                                 }
                             }                     
                         }
+                        
+                        if ($type == "tasks" && $action == "update" && $id != ""){
+
+                            $id = htmlentities($id, ENT_QUOTES, "UTF-8");
+
+                            if ($res = $connect->query(
+                                sprintf("SELECT tasks.id, lists.userId, tasks.done FROM tasks INNER JOIN lists ON tasks.listId=lists.id WHERE tasks.id='%s'",
+                                mysqli_real_escape_string($connect, $id)))){
+
+                                if ($res->num_rows){
+
+                                    $dat = array();
+
+                                    while ($row = $res->fetch_row()){
+
+                                        $dat[] = $row;
+                                    }
+
+                                    if ($dat[0][1] == $userId){
+
+                                        $id = $dat[0][0];
+                                        if ($dat[0][2] == "false") $done = "true";
+                                            else $done = "false";
+
+                                        if ($result = $connect->query("UPDATE tasks SET done='$done' WHERE id='$id'")){
+                                            
+                                            if ($tasksResult = $connect->query("SELECT tasks.id, tasks.listId, tasks.name, tasks.done 
+                                            FROM tasks INNER JOIN lists ON tasks.listId=lists.id WHERE lists.userId='$userId'")){
+
+                                                if ($tasksResult->num_rows){
+
+                                                    $tasks = array();
+
+                                                    while ($row = $tasksResult->fetch_row()){
+
+                                                        $tasks[] = new Tasks($row[0], $row[1], $row[2], $row[3]);
+                                                    }
+
+                                                    echo json_encode($tasks);
+
+                                                    $tasksResult->free_result();
+
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    $res->free_result();
+                                }
+                            }                     
+                        }
                     }
 
                     $results->free_result();
