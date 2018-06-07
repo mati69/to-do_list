@@ -707,9 +707,9 @@ const nav = function (event) {
     myHelpButton.style.display = "-webkit-box";
     myHelpButton.style.display = "-ms-flexbox";
     myHelpButton.style.display = "flex";
-    myAboutMeButton.style.display = "-webkit-box";
-    myAboutMeButton.style.display = "-ms-flexbox";
-    myAboutMeButton.style.display = "flex";
+    myAboutButton.style.display = "-webkit-box";
+    myAboutButton.style.display = "-ms-flexbox";
+    myAboutButton.style.display = "flex";
 
     if (userId) {
 
@@ -737,6 +737,58 @@ const nav = function (event) {
     myMenuElement.classList.toggle('show');
 };
 
+const about = function (event) {
+
+    this.style.display = "none";
+    myHomeButton.style.display = "none";
+    myHelpButton.style.display = "none";
+
+    if (userId) {
+
+        myH2MainMenuElement.style.display = "none";
+        mySignOutButton.style.display = "none";
+
+    } else {
+
+        mySignInButton.style.display = "none";
+        myRegisterButton.style.display = "none";
+
+    };
+
+    const newH2MenuElement = document.createElement('h2');
+    newH2MenuElement.setAttribute("id", "h2Menu");
+    newH2MenuElement.innerText = "TO-DO List\nVersion 1.0\nCopyright (C) 2018 by Mateusz Szul";
+
+    myContentElement.style.width = "100vw";
+    myContentElement.appendChild(newH2MenuElement);
+};
+
+const help = function (event) {
+
+    this.style.display = "none";
+    myHomeButton.style.display = "none";
+    myAboutButton.style.display = "none";
+
+    if (userId) {
+
+        myH2MainMenuElement.style.display = "none";
+        mySignOutButton.style.display = "none";
+
+    } else {
+
+        mySignInButton.style.display = "none";
+        myRegisterButton.style.display = "none";
+
+    };
+
+    const newH2MenuElement = document.createElement('h2');
+    newH2MenuElement.setAttribute("id", "h2Menu");
+    newH2MenuElement.innerText = "You can create up to 10 lists that can contain up to 10 tasks.\nNames can not exceed 20 characters.\nRegister and Sign in to access online data on each device.";
+
+    myContentElement.style.width = "100vw";
+    myContentElement.appendChild(newH2MenuElement);
+};
+
 const signOut = function (event) {
 
     userId = 0;
@@ -756,7 +808,7 @@ const signOut = function (event) {
     this.style.display = "none";
     myHomeButton.style.display = "none";
     myHelpButton.style.display = "none";
-    myAboutMeButton.style.display = "none";
+    myAboutButton.style.display = "none";
 
     myH2MainMenuElement.innerText = "";
     myH2MainMenuElement.style.display = "none";
@@ -959,7 +1011,7 @@ const signIn = function (event) {
     myHomeButton.style.display = "none";
     myRegisterButton.style.display = "none";
     myHelpButton.style.display = "none";
-    myAboutMeButton.style.display = "none";
+    myAboutButton.style.display = "none";
 
     myH2MainMenuElement.innerText = "Sign in";
     myH2MainMenuElement.style.display = "block";
@@ -1216,7 +1268,7 @@ const register = function (event) {
     myHomeButton.style.display = "none";
     mySignInButton.style.display = "none";
     myHelpButton.style.display = "none";
-    myAboutMeButton.style.display = "none";
+    myAboutButton.style.display = "none";
 
     myH2MainMenuElement.innerText = "Register";
     myH2MainMenuElement.style.display = "block";
@@ -1484,7 +1536,7 @@ const myRecaptchaElement = document.querySelector('.g-recaptcha');
 const mySignInButton = document.querySelector('#signIn');
 const myRegisterButton = document.querySelector('#register');
 const myHelpButton = document.querySelector('#help');
-const myAboutMeButton = document.querySelector('#aboutMe');
+const myAboutButton = document.querySelector('#about');
 const mySignOutButton = document.querySelector('#signOut');
 const myHideButton = document.querySelector('#hide');
 const myAddButton = document.querySelector('#add');
@@ -1495,6 +1547,8 @@ let myTasksElement = document.querySelector('#tasks');
 myNavButton.addEventListener('click', nav);
 mySignInButton.addEventListener('click', signIn);
 myRegisterButton.addEventListener('click', register);
+myHelpButton.addEventListener('click', help);
+myAboutButton.addEventListener('click', about);
 mySignOutButton.addEventListener('click', signOut);
 myHideButton.addEventListener('click', hide);
 myAddButton.addEventListener('click', add);

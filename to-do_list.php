@@ -51,7 +51,7 @@ if ($connect->connect_errno){
 
                 <li id="help">Help</li>
 
-                <li id="aboutMe">About me</li>
+                <li id="about">About</li>
 
                 <li id="signOut">Sign out</li>
             </ul>
