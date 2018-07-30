@@ -35,7 +35,7 @@ if ($connect->connect_errno){
         <nav class="menu">
 
             <div id="home">
-                <a href="#">
+                <a href="index.html">
                     <i class="fa fa-home" aria-hidden="true"></i>
                 </a>
             </div>

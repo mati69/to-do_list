@@ -83,7 +83,7 @@ const Button = class extends Div {
             myDivElement.style.lineHeight = lineHeight * 0.7 - 7 + "px";
         };
 
-        if (this.type == 'show') {
+        if (this.type == 'open') {
 
             newIElement.setAttribute("class", "fa fa-angle-down");
             myDivElement.style.lineHeight = lineHeight * 0.7 + "px";
@@ -316,7 +316,7 @@ const activateButton = function (event) {
                         right = [];
 
                         for (let i = 0; i < listCount; i++) {
-                            left[i] = 'show';
+                            left[i] = 'open';
                             right[i] = 'remove';
                         };
 
@@ -422,7 +422,7 @@ const activateButton = function (event) {
         };
     };
 
-    if (this.className == 'show') {
+    if (this.className == 'open') {
 
         myNavButton.style.display = "none";
         myHideButton.style.display = "block";
@@ -504,7 +504,7 @@ const activateTextLine = function (event) {
 
     const index = Number(this.id.charAt(this.id.length - 1));
 
-    if (left[index] == 'show') {
+    if (left[index] == 'open') {
 
         myNavButton.style.display = "none";
         myHideButton.style.display = "block";
@@ -632,7 +632,7 @@ const refreshView = function () {
             newLeftElement.setAttribute("id", "left" + i);
             myLeftElement.appendChild(newLeftElement);
 
-            const newButton = new Button('show', i, 'left');
+            const newButton = new Button('open', i, 'left');
             newButton.create();
         };
 
@@ -734,7 +734,7 @@ const nav = function (event) {
         mySignOutButton.style.display = "none";
     };
 
-    myMenuElement.classList.toggle('show');
+    myMenuElement.classList.toggle('open');
 };
 
 const about = function (event) {
@@ -940,7 +940,7 @@ const rewriteTextMenu = function (event) {
                         if (listCount == 10) myAddButton.style.display = "none";
 
                         for (let i = 0; i < listCount; i++) {
-                            left[i] = 'show';
+                            left[i] = 'open';
                             right[i] = 'remove';
                         };
                     };
@@ -1310,7 +1310,7 @@ const hide = function (event) {
     right = [];
 
     for (let i = 0; i < listCount; i++) {
-        left[i] = 'show';
+        left[i] = 'open';
         right[i] = 'remove';
     };
 
@@ -1358,7 +1358,7 @@ const rewriteText = function (event) {
 
         if (userId == 0) {
 
-            left[listCount] = 'show';
+            left[listCount] = 'open';
             right[listCount] = 'remove';
             lists[listCount] = new List(getId(lists), userId, this.value);
 
@@ -1397,7 +1397,7 @@ const rewriteText = function (event) {
                     right = [];
 
                     for (let i = 0; i < listCount; i++) {
-                        left[i] = 'show';
+                        left[i] = 'open';
                         right[i] = 'remove';
                     };
 
@@ -1576,7 +1576,7 @@ if (typeof (Storage) !== "undefined") {
         if (listCount == 10) myAddButton.style.display = "none";
 
         for (let i = 0; i < listCount; i++) {
-            left[i] = 'show';
+            left[i] = 'open';
             right[i] = 'remove';
         };
     };
@@ -1623,7 +1623,7 @@ if (typeof (Storage) !== "undefined") {
                     if (listCount == 10) myAddButton.style.display = "none";
 
                     for (let i = 0; i < listCount; i++) {
-                        left[i] = 'show';
+                        left[i] = 'open';
                         right[i] = 'remove';
                     };
                 };
