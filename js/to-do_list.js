@@ -46,9 +46,11 @@ const Button = class extends Div {
 
         myDivElement.appendChild(newIElement);
 
-        myDivElement.style.width = lineHeight * 0.7 + "px";
-        myDivElement.style.height = lineHeight * 0.7 + "px";
-        myDivElement.style.fontSize = fontSize;
+        myDivElement.style.width = lineHeight * buttonHeight + "px";
+        myDivElement.style.height = lineHeight * buttonHeight + "px";
+        myDivElement.style.fontSize = buttonFontSize;
+        myDivElement.style.position = "absolute";
+        myDivElement.style.zIndex = "1";
         myDivElement.style.webkitTransform = "translateY(+15%)";
         myDivElement.style.transform = "translateY(+15%)";
         myDivElement.style.backgroundColor = "white";
@@ -57,9 +59,9 @@ const Button = class extends Div {
         myDivElement.style.borderRadius = "50%";
         myDivElement.style.textAlign = "center";
         myDivElement.style.overflow = "hidden";
-        myDivElement.style.position = "absolute";
-        myDivElement.style.zIndex = "2";
         myDivElement.style.top = (9 * this.index + 1) + "%";
+        myDivElement.style.webkitTransition = "0.5s ease";
+        myDivElement.style.transition = "0.5s ease";
 
         $('#' + this.type + this.index).hover(function () {
             $(this).css("background-color", "black");
@@ -80,16 +82,14 @@ const Button = class extends Div {
         if (this.type == 'remove') {
 
             newIElement.setAttribute("class", "fa fa-times");
-            myDivElement.style.lineHeight = lineHeight * 0.7 - 7 + "px";
+            myDivElement.style.lineHeight = lineHeight * buttonHeight - 7 + "px";
         };
 
         if (this.type == 'open') {
 
             newIElement.setAttribute("class", "fa fa-angle-down");
-            myDivElement.style.lineHeight = lineHeight * 0.7 + "px";
+            myDivElement.style.lineHeight = lineHeight * buttonHeight + "px";
             myDivElement.style.textShadow = "0 -14px 0 #547D99, 0 -28px 0 #547D99";
-            myDivElement.style.webkitTransition = "0.5s ease";
-            myDivElement.style.transition = "0.5s ease";
 
             $('#' + this.type + this.index).hover(function () {
                 $(this).css("text-shadow", "0 -14px 0 white, 0 -28px 0 white");
@@ -101,7 +101,7 @@ const Button = class extends Div {
         if (this.type == 'check') {
 
             newIElement.setAttribute("class", "fa fa-check");
-            myDivElement.style.lineHeight = lineHeight * 0.7 + "px";
+            myDivElement.style.lineHeight = lineHeight * buttonHeight + "px";
 
             if (tasks[tasksIndexList[this.index]].done == "true") {
 
@@ -123,12 +123,12 @@ const Button = class extends Div {
 
         if (this.location == 'left') {
 
-            myDivElement.style.left = "20%";
+            myDivElement.style.left = styleLeft + "%";
             myDivElement.style.webkitTransform = "translateX(-150%)";
             myDivElement.style.transform = "translateX(-150%)";
         };
 
-        if (this.location == 'right') myDivElement.style.right = "7%";
+        if (this.location == 'right') myDivElement.style.right = styleRight + "%";
     };
 };
 
@@ -179,7 +179,7 @@ const TextLine = class {
         myH2Element.style.fontWeight = "400";
         myH2Element.style.position = "absolute";
         myH2Element.style.top = (9 * index + 1) + "%";
-        myH2Element.style.left = "20%";
+        myH2Element.style.left = styleLeft + "%";
 
         if (done == "true") {
 
@@ -201,6 +201,9 @@ let tasks = [], // JSON join
 let viewWidth = 0,
     viewHeight = 0,
     lineHeight = 0,
+    buttonHeight = 0.7,
+    styleLeft = 20,
+    styleRight = 7,
     contentWidth = "",
 
     userId = 0, // taken from the database
@@ -211,6 +214,7 @@ let viewWidth = 0,
     listName = "TO-DO Lists:",
 
     fontSize = "2.2rem",
+    buttonFontSize = "2.2rem",
 
     username = '',
     password = '';
@@ -757,9 +761,9 @@ const about = function (event) {
 
     const newH2MenuElement = document.createElement('h2');
     newH2MenuElement.setAttribute("id", "h2Menu");
-    newH2MenuElement.innerText = "TO-DO List\nVersion 1.0\nCopyright (C) 2018 by Mateusz Szul";
+    newH2MenuElement.innerText = "TO-DO List\nVersion 1.0\nCopyright © 2018 by Mateusz Szul";
 
-    myContentElement.style.width = "100vw";
+    myContentElement.style.width = "100%";
     myContentElement.appendChild(newH2MenuElement);
 };
 
@@ -785,7 +789,7 @@ const help = function (event) {
     newH2MenuElement.setAttribute("id", "h2Menu");
     newH2MenuElement.innerText = "You can create up to 10 lists that can contain up to 10 tasks.\nNames can not exceed 20 characters.\nRegister and Sign in to access online data on each device.";
 
-    myContentElement.style.width = "100vw";
+    myContentElement.style.width = "100%";
     myContentElement.appendChild(newH2MenuElement);
 };
 
@@ -883,7 +887,7 @@ const rewriteTextMenu = function (event) {
             }
         });
 
-        myContentElement.style.width = "100vw";
+        myContentElement.style.width = "100%";
 
         if (userId) {
 
@@ -1192,7 +1196,7 @@ const rewriteTextRegisterMenu = function (event) {
                         username = '';
                         password = '';
 
-                        myContentElement.style.width = "100vw";
+                        myContentElement.style.width = "100%";
 
                         if (response == "success") myH2MenuElement.innerText = "Registration successful! Please Sign in.";
 
@@ -1206,7 +1210,7 @@ const rewriteTextRegisterMenu = function (event) {
 
                         myRecaptchaElement.style.display = "none";
 
-                        myContentElement.style.width = "100vw";
+                        myContentElement.style.width = "100%";
 
                         const newH2MenuElement = document.createElement('h2');
                         newH2MenuElement.setAttribute("id", "h2Menu");
@@ -1221,7 +1225,7 @@ const rewriteTextRegisterMenu = function (event) {
 
                         myRecaptchaElement.style.display = "none";
 
-                        myContentElement.style.width = "100vw";
+                        myContentElement.style.width = "100%";
 
                         const newH2MenuElement = document.createElement('h2');
                         newH2MenuElement.setAttribute("id", "h2Menu");
@@ -1241,7 +1245,7 @@ const rewriteTextRegisterMenu = function (event) {
             this.value = '';
             myContentElement.removeChild(this);
 
-            myContentElement.style.width = "100vw";
+            myContentElement.style.width = "100%";
 
             myH2MenuElement.innerText = "The passwords are not the same!";
 
@@ -1517,7 +1521,7 @@ const add = function (event) {
     myTextInputElement.style.fontSize = fontSize;
     myTextInputElement.style.position = "absolute";
     myTextInputElement.style.bottom = "7%";
-    myTextInputElement.style.left = "20%";
+    myTextInputElement.style.left = styleLeft + "%";
 
     myTextInputElement.addEventListener('keydown', rewriteText);
 };
@@ -1677,7 +1681,9 @@ const myMediaPFunction = function (p) {
 
     if (p.matches) {
 
-        fontSize = "1.1rem";
+        buttonHeight = 0.95;
+        fontSize = "1.9rem";
+        buttonFontSize = "1.4rem";
         refreshView();
     };
 };
@@ -1686,11 +1692,14 @@ const p = window.matchMedia("(orientation: landscape)");
 
 myMediaPFunction(p);
 
+p.addListener(myMediaPFunction);
+
 const myMediaRFunction = function (r) {
 
     if (r.matches) {
 
-        fontSize = "3.5rem";
+        fontSize = "3.3rem";
+        buttonFontSize = "3.3rem";
         refreshView();
     };
 };
@@ -1699,11 +1708,14 @@ const r = window.matchMedia("(min-width: 530px)");
 
 myMediaRFunction(r);
 
+r.addListener(myMediaRFunction);
+
 const myMediaOFunction = function (o) {
 
     if (o.matches) {
 
-        fontSize = "1.2rem";
+        fontSize = "2.2rem";
+        buttonFontSize = "1.7rem";
         refreshView();
     };
 };
@@ -1712,26 +1724,15 @@ const o = window.matchMedia("(min-width: 530px) and (orientation: landscape)");
 
 myMediaOFunction(o);
 
-const myMediaQFunction = function (q) {
-
-    if (q.matches) {
-
-        fontSize = "3.5rem";
-        refreshView();
-    };
-};
-
-const q = window.matchMedia("(min-width: 768px)");
-
-myMediaQFunction(q);
-
-q.addListener(myMediaQFunction);
+o.addListener(myMediaOFunction);
 
 const myMediaNFunction = function (n) {
 
     if (n.matches) {
 
-        fontSize = "1.4rem";
+        buttonHeight = 0.85;
+        fontSize = "3rem";
+        buttonFontSize = "2.2rem";
         refreshView();
     };
 };
@@ -1740,11 +1741,14 @@ const n = window.matchMedia("(min-width: 768px) and (orientation: landscape)");
 
 myMediaNFunction(n);
 
+n.addListener(myMediaNFunction);
+
 const myMediaSFunction = function (s) {
 
     if (s.matches) {
 
         fontSize = "4.3rem";
+        buttonFontSize = "3.8rem";
         refreshView();
     };
 };
@@ -1753,11 +1757,15 @@ const s = window.matchMedia("(min-width: 768px) and (orientation: portrait)");
 
 myMediaSFunction(s);
 
+s.addListener(myMediaSFunction);
+
 const myMediaTFunction = function (t) {
 
     if (t.matches) {
 
-        fontSize = "3.4rem";
+        buttonHeight = 0.7;
+        fontSize = "4rem";
+        buttonFontSize = "3.3rem";
         refreshView();
     };
 };
@@ -1772,7 +1780,8 @@ const myMediaVFunction = function (v) {
 
     if (v.matches) {
 
-        fontSize = "3.6rem";
+        styleLeft = 25;
+        styleRight = 12;
         refreshView();
     };
 };
@@ -1787,7 +1796,8 @@ const myMediaXFunction = function (x) {
 
     if (x.matches) {
 
-        fontSize = "4rem";
+        styleLeft = 32;
+        styleRight = 19;
         refreshView();
     };
 };
@@ -1803,6 +1813,7 @@ const myMediaZFunction = function (z) {
     if (z.matches) {
 
         fontSize = "1.9rem";
+        buttonFontSize = "1.4rem";
         refreshView();
     };
 };
@@ -1810,5 +1821,7 @@ const myMediaZFunction = function (z) {
 const z = window.matchMedia("(max-width: 320px)");
 
 myMediaZFunction(z);
+
+z.addListener(myMediaZFunction);
 
 refreshView();

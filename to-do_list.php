@@ -21,7 +21,7 @@ if ($connect->connect_errno){
         <meta charset="UTF-8">
         <title>TO-DO List</title>
 
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link href="https://fonts.googleapis.com/css?family=Saira+Condensed:400,700&amp;subset=latin-ext" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Oswald:400,700&amp;subset=latin-ext" rel="stylesheet">
@@ -32,32 +32,6 @@ if ($connect->connect_errno){
     </head>
 
     <body>
-        <nav class="menu">
-
-            <div id="home">
-                <a href="index.html">
-                    <i class="fa fa-home" aria-hidden="true"></i>
-                </a>
-            </div>
-
-            <h2 id="h2MainMenu"></h2>
-
-            <ul id="content">
-                <div class="g-recaptcha" data-sitekey="6LdlsE8UAAAAAHo-dBc5L4xZNwu0wf76peN8jLQ4"></div>
-
-                <li id="signIn">Sign in</li>
-
-                <li id="register">Register</li>
-
-                <li id="help">Help</li>
-
-                <li id="about">About</li>
-
-                <li id="signOut">Sign out</li>
-            </ul>
-
-        </nav>
-
         <header>
 
             <h1></h1>
@@ -72,6 +46,32 @@ if ($connect->connect_errno){
             <div id="hide">
                 <i class="fa fa-angle-up" aria-hidden="true"></i>
             </div>
+
+            <nav class="menu">
+
+                <div id="home">
+                    <a href="index.html">
+                <i class="fa fa-home" aria-hidden="true"></i>
+            </a>
+                </div>
+
+                <h2 id="h2MainMenu"></h2>
+
+                <ul id="content">
+                    <div class="g-recaptcha" data-sitekey="6LdlsE8UAAAAAHo-dBc5L4xZNwu0wf76peN8jLQ4"></div>
+
+                    <li id="signIn">Sign in</li>
+
+                    <li id="register">Register</li>
+
+                    <li id="help">Help</li>
+
+                    <li id="about">About</li>
+
+                    <li id="signOut">Sign out</li>
+                </ul>
+
+            </nav>
 
         </header>
 
@@ -91,7 +91,7 @@ if ($connect->connect_errno){
 
         <footer>
 
-            <h3>Copyright (C) 2018 by Mateusz Szul</h3>
+            <h3>Copyright © 2018 by Mateusz Szul</h3>
 
         </footer>
 
