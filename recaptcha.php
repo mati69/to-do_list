@@ -26,6 +26,6 @@ if (isset($_POST['recaptcha'])){
 
             echo json_encode($error);
     }
-} else header("Location: to-do_list.php");
+} else header("Location: to-do_list.html");
 
 ?>

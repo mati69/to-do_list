@@ -1520,6 +1520,7 @@ const add = function (event) {
     myTextInputElement.style.lineHeight = lineHeight + "px";
     myTextInputElement.style.fontSize = fontSize;
     myTextInputElement.style.position = "absolute";
+    myTextInputElement.style.zIndex = "1";
     myTextInputElement.style.bottom = "7%";
     myTextInputElement.style.left = styleLeft + "%";
 
@@ -1692,8 +1693,6 @@ const p = window.matchMedia("(orientation: landscape)");
 
 myMediaPFunction(p);
 
-p.addListener(myMediaPFunction);
-
 const myMediaRFunction = function (r) {
 
     if (r.matches) {
@@ -1724,8 +1723,6 @@ const o = window.matchMedia("(min-width: 530px) and (orientation: landscape)");
 
 myMediaOFunction(o);
 
-o.addListener(myMediaOFunction);
-
 const myMediaNFunction = function (n) {
 
     if (n.matches) {
@@ -1740,8 +1737,6 @@ const myMediaNFunction = function (n) {
 const n = window.matchMedia("(min-width: 768px) and (orientation: landscape)");
 
 myMediaNFunction(n);
-
-n.addListener(myMediaNFunction);
 
 const myMediaSFunction = function (s) {
 

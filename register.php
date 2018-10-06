@@ -4,33 +4,32 @@ header("Content-Type: application/json; charset=UTF-8");
 
 require_once "connect.php";
 
-$connect = @new mysqli($hostname, $db_username, $db_password, $db_name);
+if (isset($_POST['username']) && isset($_POST['password'])){
 
-if ($connect->connect_errno){
-    
-    $error = array();
-    $error[0] = array(0, $connect->connect_errno);
-    
-    echo json_encode($error);
+    $connect = @new mysqli($hostname, $db_username, $db_password, $db_name);
 
-} else {
-    
-    if (isset($_POST['username']) && isset($_POST['password'])){
-        
+    if ($connect->connect_errno){
+
+        $error = array();
+        $error[0] = array(0, $connect->connect_errno);
+
+        echo json_encode($error);
+
+    } else {
+
         $username = $_POST['username'];
         $password = $_POST['password'];
 
         $username = trim($username);
         $password = trim($password);
-        
+
         $username = htmlentities($username, ENT_QUOTES, "UTF-8");
-        $password = htmlentities($password, ENT_QUOTES, "UTF-8");
-    
+
         $regUsername = "/^[a-zA-Z0-9]{3,20}$/";
         $regPassword = "/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,20}$/";
-        
+
         if (preg_match($regUsername, $username) && preg_match($regPassword, $password)){
-            
+
             if ($results = $connect->query(
                 sprintf("SELECT id FROM users WHERE username='%s'",
                 mysqli_real_escape_string($connect, $username)))){
@@ -45,7 +44,7 @@ if ($connect->connect_errno){
                     $results->free_result();
 
                 } else {
-                    
+
                     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
                     if ($result = $connect->query(
@@ -67,12 +66,12 @@ if ($connect->connect_errno){
                 }
 
             }
-            
+
         }
-        
-    } else header("Location: to-do_list.php");
+
+        $connect->close();
+    }
     
-    $connect->close();
-}
+} else header("Location: to-do_list.html");
 
 ?>

@@ -53,15 +53,15 @@ class Tasks implements JsonSerializable{
     }
 }
 
-$connect = @new mysqli($hostname, $db_username, $db_password, $db_name);
-
-if ($connect->connect_errno == 0){
-    
-    mysqli_set_charset ($connect, "utf8");
-    
-    if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['type'])
+if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['type'])
         && isset($_POST['action']) && isset($_POST['id']) && isset($_POST['listId']) && isset($_POST['content'])){
-        
+    
+    $connect = @new mysqli($hostname, $db_username, $db_password, $db_name);
+
+    if ($connect->connect_errno == 0){
+    
+        mysqli_set_charset ($connect, "utf8");
+    
         $username = $_POST['username'];
         $password = $_POST['password'];
         $type = $_POST['type'];
@@ -125,8 +125,6 @@ if ($connect->connect_errno == 0){
 
                         if ($type == "lists" && $action == "insert" && $content != ""){
 
-                            $content = htmlentities($content, ENT_QUOTES, "UTF-8");
-
                             if ($result = $connect->query(
                                 sprintf("INSERT INTO lists VALUES (NULL, '$userId', '%s')",
                                 mysqli_real_escape_string($connect, $content)))) {
@@ -182,7 +180,6 @@ if ($connect->connect_errno == 0){
                         if ($type == "tasks" && $action == "insert" && $listId != "" && $content != ""){
 
                             $listId = htmlentities($listId, ENT_QUOTES, "UTF-8");
-                            $content = htmlentities($content, ENT_QUOTES, "UTF-8");
 
                             if ($res = $connect->query(
                                 sprintf("SELECT id, userId FROM lists WHERE id='%s'",
@@ -400,9 +397,10 @@ if ($connect->connect_errno == 0){
                 }
             }
         }
-    } else header("Location: to-do_list.php");
+        
+        $connect->close();
+    }
     
-    $connect->close();
-}
+} else header("Location: to-do_list.html");
 
 ?>
