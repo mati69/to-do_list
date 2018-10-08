@@ -738,6 +738,7 @@ const nav = function (event) {
         mySignOutButton.style.display = "none";
     };
 
+    myMenuElement.classList.add('animation');
     myMenuElement.classList.toggle('open');
 };
 

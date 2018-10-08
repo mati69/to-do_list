@@ -179,8 +179,6 @@ footer h3 {
     z-index: 4;
     -webkit-transform: translateX(100%);
     transform: translateX(100%);
-    -webkit-transition: 0.5s ease-in-out;
-    transition: 0.5s ease-in-out;
 }
 
 .menu ul {
@@ -229,6 +227,11 @@ footer h3 {
     background-color: black;
     color: white;
     cursor: pointer;
+}
+
+.menu.animation {
+    -webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
 }
 
 .menu.open {
